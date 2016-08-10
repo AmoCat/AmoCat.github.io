@@ -285,8 +285,7 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
 Uninstalling six-1.4.1: 
 </code></pre><p>经排查，并不是没有权限的问题，后来在git上发现一个类似的问题，找到原因：OS X EI Capitan本身已经安装了six 1.4.1 ,而安装theano时依赖于比1.4.1更高的six版本。OS X EI Capitan 自带的six在Apple中一个特定目录里，theano安装的six应安装到site-packages目录中，由于系统完整性保护（System Integrity Protection），pip不能卸载系统自带的six 1.4.1（即使有root权限也不能）只会跳过卸载,site-packages中也不会安装新的six版本。因此便出了以上错误。</p>
 <p>git 类似问题参考<a href="https://github.com/pypa/pip/issues/3165" target="_blank" rel="external">https://github.com/pypa/pip/issues/3165</a></p>
-<p>####解决方法是：sudo pip install  theano –upgrade –ignore-installed six</p>
-<p>此方法可安装theano不会报错，但最终电脑里的six 仍是 1.4.1版本<br>.事实上，Python import一下便会发现  出现了以下错误：  </p>
+<h4 id="解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six"><a href="#解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six" class="headerlink" title="解决方法是：sudo pip install  theano –upgrade –ignore-installed six"></a>解决方法是：sudo pip install  theano –upgrade –ignore-installed six</h4><p>此方法可安装theano不会报错，但最终电脑里的six 仍是 1.4.1版本<br>.事实上，Python import一下便会发现  出现了以下错误：  </p>
 <pre><code>Traceback (most recent call last):  
     File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  
     File &quot;/Library/Python/2.7/site-packages/theano/__init__.py&quot;, line 52, in &lt;module&gt;  
@@ -305,8 +304,7 @@ from theano.gof.cmodule import GCC_compiler
 import six.moves.cPickle as pickle  
     ImportError: No module named cPickle  
 </code></pre><p>从错误即可看出还是six版本问题。然而，机智的我又找到了类似问题哈哈哈，参考链接<a href="https://github.com/Theano/Theano/issues/3739" target="_blank" rel="external">ImportError: No module named cPickle</a>以及<a href="http://stackoverflow.com/questions/29485741/unable-to-upgrade-python-six-package-in-mac-osx-10-10-2" target="_blank" rel="external">OS X不能upgrade six</a></p>
-<p>####综合两个链接里的办法，主要是下面几个：  </p>
-<ul>
+<h4 id="综合两个链接里的办法，主要是下面几个："><a href="#综合两个链接里的办法，主要是下面几个：" class="headerlink" title="综合两个链接里的办法，主要是下面几个："></a>综合两个链接里的办法，主要是下面几个：</h4><ul>
 <li><p>先卸载six，再安装，卸载不了就去System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/ 手动删。</p>
 </li>
 <li><p>pip install –ignore-installed six 或者sudo pip install -U six经尝试，没有用（OS X EI Caption）</p>
@@ -314,8 +312,7 @@ import six.moves.cPickle as pickle
 <li><p>sudo easy_install –upgrade six 解决！前两次一直超时不知道为什么，最后成功了，此时在Python中import theano就可以不报错了。上面链接里也有人用2方法成功的，建议这几个命令都可以试一下~</p>
 </li>
 </ul>
-<p>####总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令：</p>
-<pre><code>sudo easy_install --upgrade six
+<h4 id="总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令："><a href="#总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令：" class="headerlink" title="总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令："></a>总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令：</h4><pre><code>sudo easy_install --upgrade six
 
 sudo pip install  theano
 </code></pre>
