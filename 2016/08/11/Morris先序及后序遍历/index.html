@@ -84,22 +84,30 @@
 
 
 
-<meta name="description" content="在安装Theano时遇到了这样的错误：
-Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &amp;lt;span sty">
+<meta name="description" content="二叉树的Morris先序及中序遍历
+Morris先序遍历的过程如下：  
+1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
+2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杂七杂八的命令学习笔记（安装Theano 报错）">
-<meta property="og:url" content="http://yoursite.com/2016/08/10/杂七杂八的命令学习笔记（安装Theano-报错）/index.html">
+<meta property="og:title" content="Morris先序及后序遍历">
+<meta property="og:url" content="http://yoursite.com/2016/08/11/Morris先序及后序遍历/index.html">
 <meta property="og:site_name" content="AmoCat">
-<meta property="og:description" content="在安装Theano时遇到了这样的错误：
-Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &amp;lt;span sty">
-<meta property="og:updated_time" content="2016-08-10T10:17:41.000Z">
+<meta property="og:description" content="二叉树的Morris先序及中序遍历
+Morris先序遍历的过程如下：  
+1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
+2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当">
+<meta property="og:image" content="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2016-08-11T11:18:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杂七杂八的命令学习笔记（安装Theano 报错）">
-<meta name="twitter:description" content="在安装Theano时遇到了这样的错误：
-Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &amp;lt;span sty">
+<meta name="twitter:title" content="Morris先序及后序遍历">
+<meta name="twitter:description" content="二叉树的Morris先序及中序遍历
+Morris先序遍历的过程如下：  
+1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
+2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -120,9 +128,9 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/10/杂七杂八的命令学习笔记（安装Theano-报错）/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/11/Morris先序及后序遍历/"/>
 
-  <title> 杂七杂八的命令学习笔记（安装Theano 报错） | AmoCat </title>
+  <title> Morris先序及后序遍历 | AmoCat </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -242,7 +250,7 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
             
             
               
-                杂七杂八的命令学习笔记（安装Theano 报错）
+                Morris先序及后序遍历
               
             
           </h1>
@@ -254,8 +262,8 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T16:07:02+08:00" content="2016-08-10">
-              2016-08-10
+            <time itemprop="dateCreated" datetime="2016-08-11T19:18:40+08:00" content="2016-08-11">
+              2016-08-11
             </time>
           </span>
 
@@ -282,42 +290,42 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
       
 
       
-        <p>在安装Theano时遇到了这样的错误：</p>
-<pre><code>Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &lt;span style=&quot;font-    family: Arial, Helvetica, sans-serif;&quot;&gt;This is due     to the fact that uninstalling a distutils project     will only partially uninstall the project.&lt;/span&gt;  
-Uninstalling six-1.4.1: 
-</code></pre><p>经排查，并不是没有权限的问题，后来在git上发现一个类似的问题，找到原因：OS X EI Capitan本身已经安装了six 1.4.1 ,而安装theano时依赖于比1.4.1更高的six版本。OS X EI Capitan 自带的six在Apple中一个特定目录里，theano安装的six应安装到site-packages目录中，由于系统完整性保护（System Integrity Protection），pip不能卸载系统自带的six 1.4.1（即使有root权限也不能）只会跳过卸载,site-packages中也不会安装新的six版本。因此便出了以上错误。</p>
-<p>git 类似问题参考<a href="https://github.com/pypa/pip/issues/3165" target="_blank" rel="external">https://github.com/pypa/pip/issues/3165</a></p>
-<h4 id="解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six"><a href="#解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six" class="headerlink" title="解决方法是：sudo pip install  theano –upgrade –ignore-installed six"></a>解决方法是：sudo pip install  theano –upgrade –ignore-installed six</h4><p>此方法可安装theano不会报错，但最终电脑里的six 仍是 1.4.1版本<br>.事实上，Python import一下便会发现  出现了以下错误：  </p>
-<pre><code>Traceback (most recent call last):  
-    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  
-    File &quot;/Library/Python/2.7/site-packages/theano/__init__.py&quot;, line 52, in &lt;module&gt;  
-from theano.gof import (  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/__init__.py&quot;, line 38, in &lt;module&gt;  
-from theano.gof.cc import \  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/cc.py&quot;, line 25, in &lt;module&gt;  
-from theano.gof import link  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/link.py&quot;, line 18, in &lt;module&gt;  
-from theano.gof.type import Type  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/type.py&quot;, line 17, in &lt;module&gt;  
-from theano.gof.op import CLinkerObject  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/op.py&quot;, line 25, in &lt;module&gt;  
-from theano.gof.cmodule import GCC_compiler  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/cmodule.py&quot;, line 8, in &lt;module&gt;  
-import six.moves.cPickle as pickle  
-    ImportError: No module named cPickle  
-</code></pre><p>从错误即可看出还是six版本问题。然而，机智的我又找到了类似问题哈哈哈，参考链接<a href="https://github.com/Theano/Theano/issues/3739" target="_blank" rel="external">ImportError: No module named cPickle</a>以及<a href="http://stackoverflow.com/questions/29485741/unable-to-upgrade-python-six-package-in-mac-osx-10-10-2" target="_blank" rel="external">OS X不能upgrade six</a></p>
-<h4 id="综合两个链接里的办法，主要是下面几个："><a href="#综合两个链接里的办法，主要是下面几个：" class="headerlink" title="综合两个链接里的办法，主要是下面几个："></a>综合两个链接里的办法，主要是下面几个：</h4><ul>
-<li><p>先卸载six，再安装，卸载不了就去System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/ 手动删。</p>
-</li>
-<li><p>pip install –ignore-installed six 或者sudo pip install -U six经尝试，没有用（OS X EI Caption）</p>
-</li>
-<li><p>sudo easy_install –upgrade six 解决！前两次一直超时不知道为什么，最后成功了，此时在Python中import theano就可以不报错了。上面链接里也有人用2方法成功的，建议这几个命令都可以试一下~</p>
-</li>
-</ul>
-<h4 id="总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令："><a href="#总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令：" class="headerlink" title="总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令："></a>总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令：</h4><pre><code>sudo easy_install --upgrade six
-
-sudo pip install  theano
+        <p>二叉树的Morris先序及中序遍历</p>
+<pre><code>Morris先序遍历的过程如下：  
+1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
+2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当前节点的左孩子。（第一次到当前节点，应访问左子树）  
+    b) 如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空。当前节点更新为当前节点的右孩子。（访问完了cur的左子树，第二次到当前节点，应回退到当前节点）  
+3. 重复以上1、2直到当前节点为空.
+</code></pre><p>先序遍历的思想是，输出根节点后，遍历左子树后再遍历右子树。因此我们从A出发，扫荡完左子树后，一定会回到A。<br>既然我们为O（1）的空间复杂度，那么就关键点就在于在最底层的儿子B处，该回退到哪个祖先节点（一步回退到爹或者爷爷等祖先~）.Morris的巧妙之处在于:在我们第一次遍历节点A时，就会先去找到B。并用B的右儿子做标记，指向A，这样A到B之间一定有一个环，它们的相对顺序和先序遍历一模一样.<br>    比如下图中，6245，21都组成了一个环。当我们第二次到A时（遍历完左子树），又会去掉这些“标记”，因为左子树的标记对我们没用了。如此反复，直到当前节点为空。<br>    <img src="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>    只要能够方便的到达A时是否遍历完了左子树，那么无论先序还是中序，就都很容易了。<br>    以LeetCode<a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="external">Binary Tree Inorder Traversal</a>的中序遍历为例：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;int&gt; inorderTraversal(TreeNode* root) {
+        TreeNode *cur = root;
+        TreeNode *pre = nullptr;
+        vector&lt;int&gt; res;
+        while(cur!=nullptr){
+            if(cur-&gt;left==nullptr){
+                res.push_back(cur-&gt;val);
+                pre=cur;
+                cur=cur-&gt;right;
+            }else{
+                TreeNode *p = cur-&gt;left;
+                while(p-&gt;right !=nullptr &amp;&amp; p-&gt;right != cur)
+                p=p-&gt;right;
+                if(p-&gt;right == nullptr){//第一次遍历到cur,应建标记并扫描左子树
+                    p-&gt;right=cur;
+                    cur=cur-&gt;left;
+                }else{//第二次到cur，消除标记
+                    res.push_back(cur-&gt;val);//与先序代码唯一不同的地方
+                    p-&gt;right = nullptr;
+                    cur=cur-&gt;right;
+                }
+            }
+        }
+        return res;
+    }
+};
 </code></pre>
       
     </div>
@@ -343,13 +351,13 @@ sudo pip install  theano
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/08/10/杂七杂八的学习笔记（Python requirements-txt)/" rel="next" title="杂七杂八的学习笔记（Python requirements.txt)">
+                <i class="fa fa-chevron-left"></i> 杂七杂八的学习笔记（Python requirements.txt)
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/10/杂七杂八的学习笔记（Python requirements-txt)/" rel="prev" title="杂七杂八的学习笔记（Python requirements.txt)">
-                杂七杂八的学习笔记（Python requirements.txt) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,7 +457,7 @@ sudo pip install  theano
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six"><span class="nav-number">1.</span> <span class="nav-text">解决方法是：sudo pip install  theano –upgrade –ignore-installed six</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合两个链接里的办法，主要是下面几个："><span class="nav-number">2.</span> <span class="nav-text">综合两个链接里的办法，主要是下面几个：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令："><span class="nav-number">3.</span> <span class="nav-text">总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令：</span></a></li></ol></div>
+              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
             
           </div>
         </section>

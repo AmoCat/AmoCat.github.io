@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -235,6 +235,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/11/Morris先序及后序遍历/" itemprop="url">
+                  Morris先序及后序遍历
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T19:18:40+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>二叉树的Morris先序及中序遍历</p>
+<pre><code>Morris先序遍历的过程如下：  
+1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
+2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当前节点的左孩子。（第一次到当前节点，应访问左子树）  
+    b) 如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空。当前节点更新为当前节点的右孩子。（访问完了cur的左子树，第二次到当前节点，应回退到当前节点）  
+3. 重复以上1、2直到当前节点为空.
+</code></pre><p>先序遍历的思想是，输出根节点后，遍历左子树后再遍历右子树。因此我们从A出发，扫荡完左子树后，一定会回到A。<br>既然我们为O（1）的空间复杂度，那么就关键点就在于在最底层的儿子B处，该回退到哪个祖先节点（一步回退到爹或者爷爷等祖先~）.Morris的巧妙之处在于:在我们第一次遍历节点A时，就会先去找到B。并用B的右儿子做标记，指向A，这样A到B之间一定有一个环，它们的相对顺序和先序遍历一模一样.<br>    比如下图中，6245，21都组成了一个环。当我们第二次到A时（遍历完左子树），又会去掉这些“标记”，因为左子树的标记对我们没用了。如此反复，直到当前节点为空。<br>    <img src="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>    只要能够方便的到达A时是否遍历完了左子树，那么无论先序还是中序，就都很容易了。<br>    以LeetCode<a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="external">Binary Tree Inorder Traversal</a>的中序遍历为例：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;int&gt; inorderTraversal(TreeNode* root) {
+        TreeNode *cur = root;
+        TreeNode *pre = nullptr;
+        vector&lt;int&gt; res;
+        while(cur!=nullptr){
+            if(cur-&gt;left==nullptr){
+                res.push_back(cur-&gt;val);
+                pre=cur;
+                cur=cur-&gt;right;
+            }else{
+                TreeNode *p = cur-&gt;left;
+                while(p-&gt;right !=nullptr &amp;&amp; p-&gt;right != cur)
+                p=p-&gt;right;
+                if(p-&gt;right == nullptr){//第一次遍历到cur,应建标记并扫描左子树
+                    p-&gt;right=cur;
+                    cur=cur-&gt;left;
+                }else{//第二次到cur，消除标记
+                    res.push_back(cur-&gt;val);//与先序代码唯一不同的地方
+                    p-&gt;right = nullptr;
+                    cur=cur-&gt;right;
+                }
+            }
+        }
+        return res;
+    }
+};
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/10/杂七杂八的学习笔记（Python requirements-txt)/" itemprop="url">
                   杂七杂八的学习笔记（Python requirements.txt)
                 </a>
@@ -248,7 +377,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-10T18:26:18+08:00" content="2016-08-10">
               2016-08-10
             </time>
@@ -350,7 +479,7 @@ pipreqs  path
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-10T16:07:02+08:00" content="2016-08-10">
               2016-08-10
             </time>
@@ -486,8 +615,8 @@ sudo pip install  theano
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -534,11 +663,11 @@ sudo pip install  theano
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
