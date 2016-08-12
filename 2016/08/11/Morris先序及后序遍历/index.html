@@ -84,29 +84,26 @@
 
 
 
-<meta name="description" content="二叉树的Morris先序及中序遍历
-Morris先序遍历的过程如下：  
+<meta name="description" content="Morris先序遍历的过程如下：  
 1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
 2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
-    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当">
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当前节点的左孩子。（第一次到当前节点，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Morris先序及后序遍历">
+<meta property="og:title" content="Morris先序,中序及后序遍历">
 <meta property="og:url" content="http://yoursite.com/2016/08/11/Morris先序及后序遍历/index.html">
 <meta property="og:site_name" content="AmoCat">
-<meta property="og:description" content="二叉树的Morris先序及中序遍历
-Morris先序遍历的过程如下：  
+<meta property="og:description" content="Morris先序遍历的过程如下：  
 1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
 2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
-    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当">
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当前节点的左孩子。（第一次到当前节点，">
 <meta property="og:image" content="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2016-08-11T11:18:52.000Z">
+<meta property="og:updated_time" content="2016-08-12T07:28:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Morris先序及后序遍历">
-<meta name="twitter:description" content="二叉树的Morris先序及中序遍历
-Morris先序遍历的过程如下：  
+<meta name="twitter:title" content="Morris先序,中序及后序遍历">
+<meta name="twitter:description" content="Morris先序遍历的过程如下：  
 1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
 2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
-    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当">
+    a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当前节点的左孩子。（第一次到当前节点，">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -130,7 +127,7 @@ Morris先序遍历的过程如下：
 
   <link rel="canonical" href="http://yoursite.com/2016/08/11/Morris先序及后序遍历/"/>
 
-  <title> Morris先序及后序遍历 | AmoCat </title>
+  <title> Morris先序,中序及后序遍历 | AmoCat </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -250,7 +247,7 @@ Morris先序遍历的过程如下：
             
             
               
-                Morris先序及后序遍历
+                Morris先序,中序及后序遍历
               
             
           </h1>
@@ -290,14 +287,20 @@ Morris先序遍历的过程如下：
       
 
       
-        <p>二叉树的Morris先序及中序遍历</p>
-<pre><code>Morris先序遍历的过程如下：  
+        <pre><code>Morris先序遍历的过程如下：  
 1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。(没左子树)  
 2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。  
     a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当前节点的左孩子。（第一次到当前节点，应访问左子树）  
     b) 如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空。当前节点更新为当前节点的右孩子。（访问完了cur的左子树，第二次到当前节点，应回退到当前节点）  
 3. 重复以上1、2直到当前节点为空.
-</code></pre><p>先序遍历的思想是，输出根节点后，遍历左子树后再遍历右子树。因此我们从A出发，扫荡完左子树后，一定会回到A。<br>既然我们为O（1）的空间复杂度，那么就关键点就在于在最底层的儿子B处，该回退到哪个祖先节点（一步回退到爹或者爷爷等祖先~）.Morris的巧妙之处在于:在我们第一次遍历节点A时，就会先去找到B。并用B的右儿子做标记，指向A，这样A到B之间一定有一个环，它们的相对顺序和先序遍历一模一样.<br>    比如下图中，6245，21都组成了一个环。当我们第二次到A时（遍历完左子树），又会去掉这些“标记”，因为左子树的标记对我们没用了。如此反复，直到当前节点为空。<br>    <img src="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>    只要能够方便的到达A时是否遍历完了左子树，那么无论先序还是中序，就都很容易了。<br>    以LeetCode<a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="external">Binary Tree Inorder Traversal</a>的中序遍历为例：</p>
+</code></pre><p>先序遍历的思想是，输出根节点后，遍历左子树后再遍历右子树。因此我们从A出发，扫荡完左子树后，一定会回到A。<br>既然我们为O（1）的空间复杂度，那么就关键点就在于在最底层的儿子B处，该回退到哪个祖先节点（一步回退到爹或者爷爷等祖先~）.Morris的巧妙之处在于:在我们第一次遍历节点A时，就会先去找到B。并用B的右儿子做标记，指向A，这样A到B之间一定有一个环，它们的相对顺序和先序遍历一模一样.<br>    比如下图中，6245，21都组成了一个环。当我们第二次到A时（遍历完左子树），又会去掉这些“标记”，因为左子树的标记对我们没用了。如此反复，直到当前节点为空。<br>    <img src="http://img.blog.csdn.net/20141006185342265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXh3OTc2MjM1OTU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>    只要能够方便的到达A时是否遍历完了左子树，那么无论先序还是中序，就都很容易了。</p>
+<pre><code>Morris中序遍历的过程如下：
+1. 如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。
+2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。
+   a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。
+   b) 如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空（恢复树的形状）。输出当前节点。当前节点更新为当前节点的右孩子。
+3. 重复以上1、2直到当前节点为空。
+</code></pre><p>以LeetCode<a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="external">Binary Tree Inorder Traversal</a>的中序遍历为例：</p>
 <pre><code>class Solution {
 public:
     vector&lt;int&gt; inorderTraversal(TreeNode* root) {
@@ -326,7 +329,75 @@ public:
         return res;
     }
 };
-</code></pre>
+</code></pre><hr>
+<p>后序遍历简直和先序中序不是一个Level!连题解都看不懂的我，在研究了N个小时后，终于差不多搞明白了，心。。力。。交。。瘁。。<br>Leetcode对应题目<a href="https://leetcode.com/problems/binary-tree-postorder-traversal/" target="_blank" rel="external">Binary Tree Postorder Traversal</a><br>后序遍历的步骤：</p>
+<pre><code>当前节点设置为临时节点dump。
+1. 如果当前节点的左孩子为空，则将其右孩子作为当前节点。
+2. 如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。
+   a) 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。
+   b) 如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空。倒序输出从当前节点的左孩子到该前驱节点这条路径上的所有节点。当前节点更新为当前节点的右孩子。
+3. 重复以上1、2直到当前节点为空。
+</code></pre><p>代码：</p>
+<pre><code>class Solution {
+public:
+    vector&lt;int&gt; postorderTraversal(TreeNode * root){
+        vector&lt;int&gt; res;
+        TreeNode dummy(-1);
+        dummy.left = root;
+        TreeNode *cur=&amp;dummy,*prev =nullptr;
+        std::function&lt; void(const TreeNode*)&gt;  visit=[&amp;res](const TreeNode *node){res.push_back(node-&gt;val);};
+        //lamda表达式，[&amp;res]按引用访问res
+
+        while(cur != nullptr){
+            if(cur-&gt;left == nullptr){//访问右子树的条件是左子树为空或左子树访问完了
+                prev = cur;
+                cur = cur -&gt; right;
+            }else{
+                TreeNode *p = cur-&gt;left;
+                while(p-&gt;right != nullptr &amp;&amp; p-&gt;right != cur){
+                    p=p-&gt;right;
+                }
+
+                if(p-&gt;right == nullptr){//第一次访问到cur，线索化并遍历左子树
+                    p-&gt;right = cur;
+                    prev = cur;
+                    cur = cur-&gt;left;
+                }else{
+                    visit_reverse(cur-&gt;left,prev,visit);//倒序输出前驱节点到当前节点左儿子路径上的所有节点
+                    prev-&gt;right = nullptr;
+                    prev = cur;
+                    cur = cur -&gt; right;
+                }
+            }
+        }
+        return res;
+    }
+private:
+    static void reverse(TreeNode *from, TreeNode *to){
+        TreeNode *x=from,*y=from-&gt;right,*z=nullptr;
+        if(from == to )
+            return;
+        while(x!=to){//右儿子链表倒置
+            z=y-&gt;right;
+            y-&gt;right=x;
+            x=y;
+            y=z;
+        }
+    }
+    static void visit_reverse(TreeNode *from,TreeNode *to,std::function &lt;void(const TreeNode *)&gt;&amp; visit){
+        TreeNode *p = to;
+        reverse(from,to);
+        while(true){
+            visit(p);
+            if(p==from)
+                break;
+            p=p-&gt;right;
+        }
+        reverse(to,from);
+    }
+}; 
+</code></pre><p>这里prev就是中序遍历的前驱节点，在中序遍历和先序遍历中，pre是刚刚访问过的节点，二者含义不同。<br>参考博客<a href="http://blog.csdn.net/mxw976235955/article/details/39829973" target="_blank" rel="external">Morris二叉树遍历算法</a>  </p>
+
       
     </div>
 
