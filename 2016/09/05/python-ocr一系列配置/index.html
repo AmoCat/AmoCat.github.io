@@ -84,22 +84,31 @@
 
 
 
-<meta name="description" content="在安装Theano时遇到了这样的错误：
-Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &amp;lt;span sty">
+<meta name="description" content="###安装tesseract-ocr进行图像识别，系统：OS X EI Capitan 10.11.3   安这个包废了很大功夫，一系列依赖库以及没有相关系统的中文教程，所以一点点看着英文介绍饶了很多路。这里系统整理下安装流程。
+####编译工具和依赖库：
+brew install autoconf
+brew install autogen
+brew install m4
+brew install">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杂七杂八的命令学习笔记（安装Theano 报错）">
-<meta property="og:url" content="http://yoursite.com/2016/08/10/杂七杂八的命令学习笔记（安装Theano-报错）/index.html">
+<meta property="og:title" content="python ocr一系列配置">
+<meta property="og:url" content="http://yoursite.com/2016/09/05/python-ocr一系列配置/index.html">
 <meta property="og:site_name" content="AmoCat">
-<meta property="og:description" content="在安装Theano时遇到了这样的错误：
-Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &amp;lt;span sty">
-<meta property="og:updated_time" content="2016-08-10T10:17:41.000Z">
+<meta property="og:description" content="###安装tesseract-ocr进行图像识别，系统：OS X EI Capitan 10.11.3   安这个包废了很大功夫，一系列依赖库以及没有相关系统的中文教程，所以一点点看着英文介绍饶了很多路。这里系统整理下安装流程。
+####编译工具和依赖库：
+brew install autoconf
+brew install autogen
+brew install m4
+brew install">
+<meta property="og:updated_time" content="2016-09-09T12:11:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杂七杂八的命令学习笔记（安装Theano 报错）">
-<meta name="twitter:description" content="在安装Theano时遇到了这样的错误：
-Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &amp;lt;span sty">
+<meta name="twitter:title" content="python ocr一系列配置">
+<meta name="twitter:description" content="###安装tesseract-ocr进行图像识别，系统：OS X EI Capitan 10.11.3   安这个包废了很大功夫，一系列依赖库以及没有相关系统的中文教程，所以一点点看着英文介绍饶了很多路。这里系统整理下安装流程。
+####编译工具和依赖库：
+brew install autoconf
+brew install autogen
+brew install m4
+brew install">
 
 
 
@@ -120,9 +129,9 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/10/杂七杂八的命令学习笔记（安装Theano-报错）/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/05/python-ocr一系列配置/"/>
 
-  <title> 杂七杂八的命令学习笔记（安装Theano 报错） | AmoCat </title>
+  <title> python ocr一系列配置 | AmoCat </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -242,7 +251,7 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
             
             
               
-                杂七杂八的命令学习笔记（安装Theano 报错）
+                python ocr一系列配置
               
             
           </h1>
@@ -254,8 +263,8 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T16:07:02+08:00" content="2016-08-10">
-              2016-08-10
+            <time itemprop="dateCreated" datetime="2016-09-05T16:39:16+08:00" content="2016-09-05">
+              2016-09-05
             </time>
           </span>
 
@@ -282,43 +291,72 @@ DEPRECATION: Uninstalling a distutils installed project (six) has been deprecate
       
 
       
-        <p>在安装Theano时遇到了这样的错误：</p>
-<pre><code>Found existing installation: six 1.4.1  
-DEPRECATION: Uninstalling a distutils installed project (six) has been deprecated and will be     removed in a future version. &lt;span style=&quot;font-    family: Arial, Helvetica, sans-serif;&quot;&gt;This is due     to the fact that uninstalling a distutils project     will only partially uninstall the project.&lt;/span&gt;  
-Uninstalling six-1.4.1: 
-</code></pre><p>经排查，并不是没有权限的问题，后来在git上发现一个类似的问题，找到原因：OS X EI Capitan本身已经安装了six 1.4.1 ,而安装theano时依赖于比1.4.1更高的six版本。OS X EI Capitan 自带的six在Apple中一个特定目录里，theano安装的six应安装到site-packages目录中，由于系统完整性保护（System Integrity Protection），pip不能卸载系统自带的six 1.4.1（即使有root权限也不能）只会跳过卸载,site-packages中也不会安装新的six版本。因此便出了以上错误。</p>
-<p>git 类似问题参考<a href="https://github.com/pypa/pip/issues/3165" target="_blank" rel="external">https://github.com/pypa/pip/issues/3165</a></p>
-<h4 id="解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six"><a href="#解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six" class="headerlink" title="解决方法是：sudo pip install  theano –upgrade –ignore-installed six"></a>解决方法是：sudo pip install  theano –upgrade –ignore-installed six</h4><p>此方法可安装theano不会报错，但最终电脑里的six 仍是 1.4.1版本<br>.事实上，Python import一下便会发现  出现了以下错误：  </p>
-<pre><code>Traceback (most recent call last):  
-    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  
-    File &quot;/Library/Python/2.7/site-packages/theano/__init__.py&quot;, line 52, in &lt;module&gt;  
-from theano.gof import (  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/__init__.py&quot;, line 38, in &lt;module&gt;  
-from theano.gof.cc import \  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/cc.py&quot;, line 25, in &lt;module&gt;  
-from theano.gof import link  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/link.py&quot;, line 18, in &lt;module&gt;  
-from theano.gof.type import Type  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/type.py&quot;, line 17, in &lt;module&gt;  
-from theano.gof.op import CLinkerObject  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/op.py&quot;, line 25, in &lt;module&gt;  
-from theano.gof.cmodule import GCC_compiler  
-      File &quot;/Library/Python/2.7/site-packages/theano/gof/cmodule.py&quot;, line 8, in &lt;module&gt;  
-import six.moves.cPickle as pickle  
-    ImportError: No module named cPickle  
-</code></pre><p>从错误即可看出还是six版本问题。然而，机智的我又找到了类似问题哈哈哈，参考链接<a href="https://github.com/Theano/Theano/issues/3739" target="_blank" rel="external">ImportError: No module named cPickle</a>以及<a href="http://stackoverflow.com/questions/29485741/unable-to-upgrade-python-six-package-in-mac-osx-10-10-2" target="_blank" rel="external">OS X不能upgrade six</a></p>
-<h4 id="综合两个链接里的办法，主要是下面几个："><a href="#综合两个链接里的办法，主要是下面几个：" class="headerlink" title="综合两个链接里的办法，主要是下面几个："></a>综合两个链接里的办法，主要是下面几个：</h4><ul>
-<li><p>先卸载six，再安装，卸载不了就去System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/ 手动删。</p>
-</li>
-<li><p>pip install –ignore-installed six 或者sudo pip install -U six经尝试，没有用（OS X EI Caption）</p>
-</li>
-<li><p>sudo easy_install –upgrade six 解决！前两次一直超时不知道为什么，最后成功了，此时在Python中import theano就可以不报错了。上面链接里也有人用2方法成功的，建议这几个命令都可以试一下~</p>
-</li>
-</ul>
-<h4 id="总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令："><a href="#总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令：" class="headerlink" title="总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令："></a>总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令：</h4><pre><code>sudo easy_install --upgrade six
+        <p>###安装tesseract-ocr进行图像识别，系统：OS X EI Capitan 10.11.3<br>   安这个包废了很大功夫，一系列依赖库以及没有相关系统的中文教程，所以一点点看着英文介绍饶了很多路。这里系统整理下安装流程。</p>
+<p>####编译工具和依赖库：</p>
+<pre><code>brew install autoconf
+brew install autogen
+brew install m4
+brew install automake
+brew install libtool
+brew install icu4c
+brew install pango
+brew install cairo
+brew install PIL
+brew install leptonica
+</code></pre><p>以及<a href="https://guide.macports.org/chunked/installing.macports.html" target="_blank" rel="external">MacPorts</a> :   </p>
+<pre><code>$ curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.3.4.tar.bz2   
+$ tar xf MacPorts-2.3.4.tar.bz2  
 
-sudo pip install  theano
-</code></pre>
+$ cd MacPorts-2.3.4/        
+$ ./configure  
+$ make  
+$ sudo make install  
+</code></pre><p>安完MacPorts需要配置环境变量   具体参考<a href="https://guide.macports.org/chunked/installing.shell.html" target="_blank" rel="external">这里</a></p>
+<pre><code>export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+</code></pre><p>###tesseract-ocr安装<br>github地址：<a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="external">tesseract-ocr</a><br>编译说明在<a href="https://github.com/tesseract-ocr/tesseract/wiki/Compiling" target="_blank" rel="external">https://github.com/tesseract-ocr/tesseract/wiki/Compiling</a></p>
+<p>上边的依赖包如果都安好基本没什么问题，进行如下指令：</p>
+<pre><code>git clone git@github.com:tesseract-ocr/tesseract.git  
+cd tesseract   
+./autogen.sh
+./configure --with-extra-libraries=/opt/local/lib  
+make   
+sudo make install  
+</code></pre><p>或</p>
+<pre><code>brew install tesseract
+</code></pre><p>如果要安装training tool ,则用下面的方式：</p>
+<pre><code>sudo port install cairo pango  
+sudo port install leptonica
+sudo port install icu
+
+git clone https://github.com/tesseract-ocr/tesseract/
+cd tesseract
+./autogen.sh
+./configure \
+--with-extra-libraries=/opt/local/lib \
+--with-extra-includes=/opt/local/include \
+LDFLAGS=-L/opt/local/lib \
+CPPFLAGS=-I/opt/local/include
+make
+sudo make install
+
+make training
+sudo make training-install
+</code></pre><p>安装的时候，可能出现的比较奇怪的一个错误是“syntax error near unexpected token `PANGO,’”，先检查一下g++,leptonica这些有没有安好，版本新不新，如果都没啥问题，删掉原来的configure文件，然后再重新编译，一般就好了。</p>
+<p>安装完成后在cmd中输入  </p>
+<pre><code>tesseract -v
+</code></pre><p>可得到如下信息：</p>
+<pre><code>tesseract 3.05.00dev
+ leptonica-1.73
+  libgif 4.2.3 : libjpeg 9a : libpng 1.6.24 : libtiff 4.0.6 : zlib 1.2.8 : libwebp 0.5.1 : libopenjp2 2.1.0
+</code></pre><p>安装英文和中文语言包：</p>
+<pre><code>brew install tesseract-eng
+brew install tesseract-chi-sim
+</code></pre><p>brew不好使可以从<a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="external">https://github.com/tesseract-ocr/tessdata</a>直接下载相应的包并剪切到/usr/local/share/tessdata/   (tessdata所在目录，可能跟这个不太一样)，中文包是chi-sim.traineddata,英文包是eng.traineddata。</p>
+<p>更多语言可参考<a href="https://www.macports.org/ports.php?by=name&amp;substr=tesseract-" target="_blank" rel="external">这里</a></p>
+<p>通过</p>
+<pre><code>tesseract --list-langs 
+</code></pre><p>可查看已安装的语言包，若出错，一般是TESSDATA_PREFIX环境变量的问题，可通过配置环境变量解决：<br>    export TESSDATA_PREFIX=/usr/local/opt/tesseract/ （tesseract所在目录，可能有所不同）</p>
+
       
     </div>
 
@@ -343,13 +381,13 @@ sudo pip install  theano
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/08/11/Morris先序及后序遍历/" rel="next" title="Morris先序,中序及后序遍历">
+                <i class="fa fa-chevron-left"></i> Morris先序,中序及后序遍历
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/10/杂七杂八的学习笔记（Python requirements-txt)/" rel="prev" title="杂七杂八的学习笔记（Python requirements.txt)">
-                杂七杂八的学习笔记（Python requirements.txt) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,7 +487,7 @@ sudo pip install  theano
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法是：sudo-pip-install-theano-–upgrade-–ignore-installed-six"><span class="nav-number">1.</span> <span class="nav-text">解决方法是：sudo pip install  theano –upgrade –ignore-installed six</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合两个链接里的办法，主要是下面几个："><span class="nav-number">2.</span> <span class="nav-text">综合两个链接里的办法，主要是下面几个：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下，如果mac下因为six-1-4-1-的问题安装不了theano的话，就用下边两条命令："><span class="nav-number">3.</span> <span class="nav-text">总结一下，如果mac下因为six 1.4.1 的问题安装不了theano的话，就用下边两条命令：</span></a></li></ol></div>
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
             
           </div>
         </section>

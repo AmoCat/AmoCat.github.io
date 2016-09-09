@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -235,6 +235,164 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/05/python-ocr一系列配置/" itemprop="url">
+                  python ocr一系列配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T16:39:16+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###安装tesseract-ocr进行图像识别，系统：OS X EI Capitan 10.11.3<br>   安这个包废了很大功夫，一系列依赖库以及没有相关系统的中文教程，所以一点点看着英文介绍饶了很多路。这里系统整理下安装流程。</p>
+<p>####编译工具和依赖库：</p>
+<pre><code>brew install autoconf
+brew install autogen
+brew install m4
+brew install automake
+brew install libtool
+brew install icu4c
+brew install pango
+brew install cairo
+brew install PIL
+brew install leptonica
+</code></pre><p>以及<a href="https://guide.macports.org/chunked/installing.macports.html" target="_blank" rel="external">MacPorts</a> :   </p>
+<pre><code>$ curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.3.4.tar.bz2   
+$ tar xf MacPorts-2.3.4.tar.bz2  
+
+$ cd MacPorts-2.3.4/        
+$ ./configure  
+$ make  
+$ sudo make install  
+</code></pre><p>安完MacPorts需要配置环境变量   具体参考<a href="https://guide.macports.org/chunked/installing.shell.html" target="_blank" rel="external">这里</a></p>
+<pre><code>export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+</code></pre><p>###tesseract-ocr安装<br>github地址：<a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="external">tesseract-ocr</a><br>编译说明在<a href="https://github.com/tesseract-ocr/tesseract/wiki/Compiling" target="_blank" rel="external">https://github.com/tesseract-ocr/tesseract/wiki/Compiling</a></p>
+<p>上边的依赖包如果都安好基本没什么问题，进行如下指令：</p>
+<pre><code>git clone git@github.com:tesseract-ocr/tesseract.git  
+cd tesseract   
+./autogen.sh
+./configure --with-extra-libraries=/opt/local/lib  
+make   
+sudo make install  
+</code></pre><p>或</p>
+<pre><code>brew install tesseract
+</code></pre><p>如果要安装training tool ,则用下面的方式：</p>
+<pre><code>sudo port install cairo pango  
+sudo port install leptonica
+sudo port install icu
+
+git clone https://github.com/tesseract-ocr/tesseract/
+cd tesseract
+./autogen.sh
+./configure \
+--with-extra-libraries=/opt/local/lib \
+--with-extra-includes=/opt/local/include \
+LDFLAGS=-L/opt/local/lib \
+CPPFLAGS=-I/opt/local/include
+make
+sudo make install
+
+make training
+sudo make training-install
+</code></pre><p>安装的时候，可能出现的比较奇怪的一个错误是“syntax error near unexpected token `PANGO,’”，先检查一下g++,leptonica这些有没有安好，版本新不新，如果都没啥问题，删掉原来的configure文件，然后再重新编译，一般就好了。</p>
+<p>安装完成后在cmd中输入  </p>
+<pre><code>tesseract -v
+</code></pre><p>可得到如下信息：</p>
+<pre><code>tesseract 3.05.00dev
+ leptonica-1.73
+  libgif 4.2.3 : libjpeg 9a : libpng 1.6.24 : libtiff 4.0.6 : zlib 1.2.8 : libwebp 0.5.1 : libopenjp2 2.1.0
+</code></pre><p>安装英文和中文语言包：</p>
+<pre><code>brew install tesseract-eng
+brew install tesseract-chi-sim
+</code></pre><p>brew不好使可以从<a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="external">https://github.com/tesseract-ocr/tessdata</a>直接下载相应的包并剪切到/usr/local/share/tessdata/   (tessdata所在目录，可能跟这个不太一样)，中文包是chi-sim.traineddata,英文包是eng.traineddata。</p>
+<p>更多语言可参考<a href="https://www.macports.org/ports.php?by=name&amp;substr=tesseract-" target="_blank" rel="external">这里</a></p>
+<p>通过</p>
+<pre><code>tesseract --list-langs 
+</code></pre><p>可查看已安装的语言包，若出错，一般是TESSDATA_PREFIX环境变量的问题，可通过配置环境变量解决：<br>    export TESSDATA_PREFIX=/usr/local/opt/tesseract/ （tesseract所在目录，可能有所不同）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/11/Morris先序及后序遍历/" itemprop="url">
                   Morris先序,中序及后序遍历
                 </a>
@@ -248,7 +406,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-11T19:18:40+08:00" content="2016-08-11">
               2016-08-11
             </time>
@@ -451,7 +609,7 @@ private:
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-10T18:26:18+08:00" content="2016-08-10">
               2016-08-10
             </time>
@@ -553,7 +711,7 @@ pipreqs  path
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-10T16:07:02+08:00" content="2016-08-10">
               2016-08-10
             </time>
@@ -689,8 +847,8 @@ sudo pip install  theano
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -737,7 +895,7 @@ sudo pip install  theano
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
